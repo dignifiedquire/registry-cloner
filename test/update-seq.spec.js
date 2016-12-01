@@ -15,7 +15,7 @@ describe('fetchUpdateSeq', () => {
   })
 
   after(() => {
-    nock.restore()
+    nock.cleanAll()
   })
 
   it('returns the latest update_seq', async () => {
