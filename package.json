@@ -1,0 +1,36 @@
+{
+  "name": "registry-cloner",
+  "version": "1.0.0",
+  "description": "replicate the npm into ipfs",
+  "main": "src/index.js",
+  "scripts": {
+    "lint": "eslint . && flow check",
+    "test": "mocha --compilers js:babel-register",
+    "coverage": "aegir-coverage --coverage",
+    "coverage-publish": "aegir-coverage publish",
+    "release": "aegir-release --env no-build",
+    "release-minor": "aegir-release --type minor --env no-build",
+    "release-major": "aegir-release --type major --env no-build"
+  },
+  "keywords": [],
+  "author": "Friedel Ziegelmayer <dignifiedquire@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "aegir": "^9.1.2",
+    "babel-eslint": "^7.1.1",
+    "babel-plugin-transform-flow-strip-types": "^6.18.0",
+    "babel-plugin-transform-inline-imports-commonjs": "^1.2.0",
+    "babel-plugin-transform-runtime": "^6.15.0",
+    "babel-polyfill": "^6.16.0",
+    "babel-preset-es2015-node4": "^2.1.0",
+    "babel-preset-stage-0": "^6.16.0",
+    "babel-register": "^6.18.0",
+    "chai": "^3.5.0",
+    "eslint-plugin-flowtype": "^2.29.0",
+    "flow-bin": "^0.36.0",
+    "nock": "^9.0.2"
+  },
+  "dependencies": {
+    "request": "^2.79.0"
+  }
+}

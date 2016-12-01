@@ -1,0 +1,27 @@
+{
+  "extends": "./node_modules/aegir/config/eslintrc.yml",
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "plugins": [
+    "flowtype"
+  ],
+  "rules": {
+    "flowtype/require-valid-file-annotation": [
+      2,
+      "always"
+    ],
+    "flowtype/space-after-type-colon": [
+      2,
+      "always"
+    ],
+    "flowtype/require-return-type": [
+      2,
+      "always",
+      {
+        "excludeArrowFunctions": true
+      }
+    ]
+  }
+}

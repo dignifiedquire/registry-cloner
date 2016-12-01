@@ -1,0 +1,11 @@
+{
+  "presets": ["es2015-node4", "stage-0"],
+  "plugins": [
+    ["transform-inline-imports-commonjs"],
+    ["transform-flow-strip-types"],
+    ["transform-runtime", {
+      "polyfill": true,
+      "regenerator": true
+    }]
+  ]
+}
