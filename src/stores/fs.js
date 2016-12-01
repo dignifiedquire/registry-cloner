@@ -1,6 +1,6 @@
 /* @flow */
 
-import {writeFile} from 'fs'
+import {writeFile, readFile} from 'fs'
 
 export default {
   writeFile (p: string, content: string): Promise<void> {
@@ -12,6 +12,19 @@ export default {
         }
 
         resolve()
+      })
+    })
+  },
+
+  readFile (p: string): Promise<Buffer> {
+    return new Promise((resolve, reject) => {
+      readFile(p, (err, content) => {
+        if (err) {
+          reject(err)
+          return
+        }
+
+        resolve(content)
       })
     })
   }
