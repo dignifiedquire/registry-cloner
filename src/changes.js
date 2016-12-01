@@ -5,9 +5,7 @@ import normalize from 'normalize-registry-metadata'
 import {join} from 'path'
 import eos from 'end-of-stream'
 
-type FileStore = {
-  writeFile(p: string, content: string): Promise<void>
-}
+import type {FileStore} from './stores'
 
 export default function downloadChanges (from: number, to: number, store: FileStore): Promise<void> {
   const followOptions = {

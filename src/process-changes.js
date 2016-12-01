@@ -26,13 +26,13 @@ type Change = {
   }
 }
 
-type DownloadRequest = {
+export type DownloadRequest = {
   tarball: string,
   shasum: string,
   target: string
 }
 
-type WriteRequest = {
+export type WriteRequest = {
   content: string,
   target: string
 }

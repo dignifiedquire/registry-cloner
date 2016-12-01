@@ -10,7 +10,7 @@ export default class FsStore {
     this.basePath = basePath
   }
 
-  writeFile (p: string, content: string): Promise<void> {
+  writeFile (p: string, content: string | Buffer): Promise<void> {
     const filename = this.resolve(p)
 
     return new Promise((resolve, reject) => {
