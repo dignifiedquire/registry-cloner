@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "lint": "eslint . && flow check",
-    "test": "mocha --compilers js:babel-register",
+    "test": "mocha test/*.spec.js test/**/*.spec.js --compilers js:babel-register",
     "coverage": "aegir-coverage --coverage",
     "coverage-publish": "aegir-coverage publish",
     "release": "aegir-release --env no-build",
@@ -31,6 +31,9 @@
     "nock": "^9.0.2"
   },
   "dependencies": {
+    "concurrent-couch-follower": "^1.2.0",
+    "end-of-stream": "^1.1.0",
+    "normalize-registry-metadata": "^1.1.2",
     "request": "^2.79.0"
   }
 }

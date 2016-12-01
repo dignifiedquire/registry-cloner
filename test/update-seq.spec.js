@@ -14,6 +14,10 @@ describe('fetchUpdateSeq', () => {
       .reply(200, registryFixture)
   })
 
+  after(() => {
+    nock.restore()
+  })
+
   it('returns the latest update_seq', async () => {
     const updateSeq = await fetchUpdateSeq('https://skimdb.npmjs.com/registry')
 
