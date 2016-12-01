@@ -28,11 +28,15 @@
     "chai": "^3.5.0",
     "eslint-plugin-flowtype": "^2.29.0",
     "flow-bin": "^0.36.0",
+    "garbage": "0.0.0",
+    "ipfs-daemon": "^0.3.0-beta.4",
     "nock": "^9.0.2"
   },
   "dependencies": {
+    "concat-stream": "^1.5.2",
     "concurrent-couch-follower": "^1.2.0",
     "end-of-stream": "^1.1.0",
+    "ipfs-api": "^12.0.1",
     "lodash": "^4.17.2",
     "normalize-registry-metadata": "^1.1.2",
     "request": "^2.79.0"

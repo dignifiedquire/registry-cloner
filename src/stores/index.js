@@ -1,7 +1,9 @@
 /* @flow */
 
-import fs from './fs'
+import Fs from './fs'
+import Ipfs from './ipfs'
 
 export default {
-  fs: fs
+  Fs: Fs,
+  Ipfs: Ipfs
 }
