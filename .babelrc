@@ -7,5 +7,10 @@
       "polyfill": true,
       "regenerator": true
     }]
-  ]
+  ],
+  "env": {
+    "test": {
+      "plugins": ["istanbul"]
+    }
+  }
 }

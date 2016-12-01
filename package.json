@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint . && flow check",
     "test": "mocha test/*.spec.js test/**/*.spec.js --compilers js:babel-register",
-    "coverage": "aegir-coverage --coverage",
+    "coverage": "NODE_ENV=test nyc --reporter=lcov --reporter=text-summary npm run test",
     "coverage-publish": "aegir-coverage publish",
     "release": "aegir-release --env no-build",
     "release-minor": "aegir-release --type minor --env no-build",
@@ -18,6 +18,7 @@
   "devDependencies": {
     "aegir": "^9.1.2",
     "babel-eslint": "^7.1.1",
+    "babel-plugin-istanbul": "^3.0.0",
     "babel-plugin-transform-flow-strip-types": "^6.18.0",
     "babel-plugin-transform-inline-imports-commonjs": "^1.2.0",
     "babel-plugin-transform-runtime": "^6.15.0",
@@ -30,7 +31,8 @@
     "flow-bin": "^0.36.0",
     "garbage": "0.0.0",
     "ipfs-daemon": "^0.3.0-beta.4",
-    "nock": "^9.0.2"
+    "nock": "^9.0.2",
+    "nyc": "^10.0.0"
   },
   "dependencies": {
     "concat-stream": "^1.5.2",
@@ -40,5 +42,15 @@
     "lodash": "^4.17.2",
     "normalize-registry-metadata": "^1.1.2",
     "request": "^2.79.0"
+  },
+  "nyc": {
+    "include": [
+      "src/**/*.js"
+    ],
+    "require": [
+      "babel-register"
+    ],
+    "sourceMap": false,
+    "instrument": false
   }
 }
