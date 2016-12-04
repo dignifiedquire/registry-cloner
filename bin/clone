@@ -1,0 +1,18 @@
+#! /usr/bin/env node
+
+require('babel-register')
+const clone = require('../src').default
+
+console.log('Starting')
+
+clone({
+  from: 0,
+  to: 500
+})
+.then(() => {
+  console.log('Done')
+})
+.catch((err) => {
+  console.error(err)
+  process.exit(1)
+})

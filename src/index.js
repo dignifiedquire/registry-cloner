@@ -16,12 +16,12 @@ type CloneOpts = {
 const basePath = join(process.cwd(), '.registry')
 
 export default async function clone (opts: CloneOpts): Promise<void> {
-  opts = Object.assign(opts, {
+  opts = Object.assign({
     from: 0,
     to: -1,
     batchsize: 1000,
     registry: 'https://skimdb.npmjs.com/registry'
-  })
+  }, opts)
 
   const store = new stores.Fs(basePath)
 

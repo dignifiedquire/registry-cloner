@@ -58,6 +58,6 @@ export default class Store {
    * Join the given path `p` with the `basePath`.
    */
   resolve (p: string): string {
-    return path.join(this.basePath, p)
+    return path.resolve(this.basePath, p)
   }
 }
