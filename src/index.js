@@ -1,7 +1,10 @@
 /* @flow */
 
-// import downloadChanges from './changes'
+import {join} from 'path'
+
+import downloadChanges from './changes'
 import fetchUpdateSeq from './update-seq'
+import stores from './stores'
 
 type CloneOpts = {
   from: number,
@@ -10,7 +13,9 @@ type CloneOpts = {
   registry: string
 }
 
-export default function clone (opts: CloneOpts): Promise<void> {
+const basePath = join(process.cwd(), '.registry')
+
+export default async function clone (opts: CloneOpts): Promise<void> {
   opts = Object.assign(opts, {
     from: 0,
     to: -1,
@@ -18,14 +23,15 @@ export default function clone (opts: CloneOpts): Promise<void> {
     registry: 'https://skimdb.npmjs.com/registry'
   })
 
-  return fetchUpdateSeq(opts.registry)
-    .then((latestSeq) => {
-      if (opts.to === -1) {
-        opts.to = latestSeq
-      } else if (opts.to > latestSeq) {
-        throw new Error('Can not replicate into the future')
-      }
+  const store = new stores.Fs(basePath)
 
-      // return downloadChanges(opts.from, Math.min(opts.to, opts.batchsize))
-    })
+  const latestSeq = await fetchUpdateSeq(opts.registry)
+
+  if (opts.to === -1) {
+    opts.to = latestSeq
+  } else if (opts.to > latestSeq) {
+    throw new Error('Can not replicate into the future')
+  }
+
+  await downloadChanges(opts.from, Math.min(opts.to, opts.batchsize), store)
 }

@@ -1,26 +1,40 @@
 /* @flow */
 
-export default class MemoryStore {
+import {get, set} from 'lodash'
+
+import Store from './base'
+
+export default class MemoryStore extends Store {
   fs: {[id: string]: any}
 
-  constructor () {
+  constructor (basePath?: string) {
+    super(basePath)
     this.fs = {}
   }
 
-  writeFile (p: string, content: string | Buffer): Promise<void> {
-    if (typeof content === 'string') {
-      content = new Buffer(content)
-    }
-
-    this.fs[p] = new Buffer(content)
+  _writeFile (p: string, content: Buffer): Promise<void> {
+    set(this.fs, p.replace(/^\//, '').split('/'), content)
     return Promise.resolve()
   }
 
-  readFile (p: string): Promise<Buffer> {
-    if (this.fs[p]) {
-      return Promise.resolve(this.fs[p])
+  _readFile (p: string): Promise<Buffer> {
+    const val = get(this.fs, p.replace(/^\//, '').split('/'))
+    if (val != null) {
+      return Promise.resolve(val)
     }
 
     return Promise.reject(new Error('Not found'))
+  }
+
+  mkdirp (dirname: string): Promise<void> {
+    dirname.split('/').reduce((cur, part) => {
+      if (part && !cur[part]) {
+        cur[part] = {}
+      }
+
+      return part ? cur[part] : cur
+    }, this.fs)
+
+    return Promise.resolve()
   }
 }

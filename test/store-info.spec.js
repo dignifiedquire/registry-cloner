@@ -11,13 +11,13 @@ describe('storeInfo', () => {
     const store = new stores.Memory()
 
     await storeInfo([{
-      target: '1.json',
+      target: '/1.json',
       content: '1'
     }, {
-      target: '2.json',
+      target: '/2.json',
       content: '2'
     }, {
-      target: '1.json',
+      target: '/1.json',
       content: '10'
     }], store)
 

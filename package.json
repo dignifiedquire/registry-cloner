@@ -40,6 +40,7 @@
     "end-of-stream": "^1.1.0",
     "ipfs-api": "^12.0.1",
     "lodash": "^4.17.2",
+    "mkdirp": "^0.5.1",
     "normalize-registry-metadata": "^1.1.2",
     "promise-retry": "^1.1.1",
     "promise.series": "^0.1.0",

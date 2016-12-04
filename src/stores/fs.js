@@ -1,35 +1,25 @@
 /* @flow */
 
 import {writeFile as writeFileCb, readFile as readFileCb} from 'fs'
-import path from 'path'
 import promisify from 'promisify-es6'
+import mkdirpCb from 'mkdirp'
 
 const writeFile = promisify(writeFileCb)
 const readFile = promisify(readFileCb)
+const mkdirp = promisify(mkdirpCb)
 
-export default class FsStore {
-  basePath: string
+import Store from './base'
 
-  constructor (basePath?: string = '/') {
-    this.basePath = basePath
+export default class FsStore extends Store {
+  _writeFile (p: string, content: Buffer): Promise<void> {
+    return writeFile(p, content)
   }
 
-  writeFile (p: string, content: string | Buffer): Promise<void> {
-    const filename = this.resolve(p)
-
-    return writeFile(filename, content)
+  _readFile (p: string): Promise<Buffer> {
+    return readFile(p)
   }
 
-  readFile (p: string): Promise<Buffer> {
-    const filename = this.resolve(p)
-
-    return readFile(filename)
-  }
-
-  /**
-   * Join the given path `p` with the `basePath`.
-   */
-  resolve (p: string): string {
-    return path.join(this.basePath, p)
+  mkdirp (dirname: string): Promise<void> {
+    return mkdirp(dirname)
   }
 }
