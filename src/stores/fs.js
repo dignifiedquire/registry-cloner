@@ -1,7 +1,11 @@
 /* @flow */
 
-import {writeFile, readFile} from 'fs'
+import {writeFile as writeFileCb, readFile as readFileCb} from 'fs'
 import path from 'path'
+import promisify from 'promisify-es6'
+
+const writeFile = promisify(writeFileCb)
+const readFile = promisify(readFileCb)
 
 export default class FsStore {
   basePath: string
@@ -13,31 +17,13 @@ export default class FsStore {
   writeFile (p: string, content: string | Buffer): Promise<void> {
     const filename = this.resolve(p)
 
-    return new Promise((resolve, reject) => {
-      writeFile(filename, content, (err) => {
-        if (err) {
-          reject(err)
-          return
-        }
-
-        resolve()
-      })
-    })
+    return writeFile(filename, content)
   }
 
   readFile (p: string): Promise<Buffer> {
     const filename = this.resolve(p)
 
-    return new Promise((resolve, reject) => {
-      readFile(filename, (err, content) => {
-        if (err) {
-          reject(err)
-          return
-        }
-
-        resolve(content)
-      })
-    })
+    return readFile(filename)
   }
 
   /**

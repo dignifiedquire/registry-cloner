@@ -43,8 +43,10 @@
     "normalize-registry-metadata": "^1.1.2",
     "promise-retry": "^1.1.1",
     "promise.series": "^0.1.0",
+    "promisify-es6": "^1.0.2",
     "request": "^2.79.0",
-    "sha": "^2.0.1"
+    "sha": "^2.0.1",
+    "threads": "^0.7.2"
   },
   "nyc": {
     "include": [

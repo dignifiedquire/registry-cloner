@@ -9,6 +9,14 @@ export type FileStore = {
   readFile(p: string): Promise<Buffer>
 }
 
+export type StoreType = 'Fs' | 'Ipfs' | 'Memory'
+
+export type StoreConfig = {
+  type: StoreType,
+  opts?: {[id: string]: any},
+  basePath?: string
+}
+
 export default {
   Fs: Fs,
   Ipfs: Ipfs,
