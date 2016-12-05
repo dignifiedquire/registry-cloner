@@ -6,7 +6,9 @@ import Memory from './memory'
 
 export type FileStore = {
   writeFile(p: string, content: string | Buffer): Promise<void>,
-  readFile(p: string): Promise<Buffer>
+  readFile(p: string): Promise<Buffer>,
+  ls(p: string): Promise<Array<string>>,
+  mkdirp(p: string): Promise<void>
 }
 
 export type StoreType = 'Fs' | 'Ipfs' | 'Memory'

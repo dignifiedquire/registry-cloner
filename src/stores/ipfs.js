@@ -37,11 +37,16 @@ export default class IpfsStore extends Store {
     })
   }
 
+  async _ls (p: string): Promise<Array<string>> {
+    const list = await this.api.files.ls(p)
+    return list.Entries.map((e) => e.Name)
+  }
+
   /**
    * Create all directories for this path
    */
   mkdirp (dirname: string): Promise<void> {
-    return this.api.files.mkdir(dirname, {
+    return this.api.files.mkdir(this.resolve(dirname), {
       p: true,
       flush: this.flush
     })

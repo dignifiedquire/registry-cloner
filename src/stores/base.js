@@ -13,7 +13,7 @@ export default class Store {
     const filename = this.resolve(p)
 
     // 1. Ensure the containing directory exists
-    await this.ensurePath(filename)
+    await this.ensurePath(p)
 
     // 2. Create the file
 
@@ -38,6 +38,18 @@ export default class Store {
   }
 
   /**
+   * List files and folders in the directory.
+   */
+  ls (p: string): Promise<Array<string>> {
+    const dirname = this.resolve(p)
+    return this._ls(dirname)
+  }
+
+  _ls (dirname: string): Promise<Array<string>> {
+    return Promise.reject('implement me')
+  }
+
+  /**
    * Ensure all directories on the given path exist.
    */
   ensurePath (p: string): Promise<void> {
@@ -58,6 +70,12 @@ export default class Store {
    * Join the given path `p` with the `basePath`.
    */
   resolve (p: string): string {
-    return path.resolve(this.basePath, p)
+    if (p.indexOf(this.basePath) === 0) {
+      return p
+    }
+
+    return path.resolve(
+      path.join(this.basePath, p)
+    )
   }
 }

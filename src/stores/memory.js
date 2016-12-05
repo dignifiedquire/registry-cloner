@@ -26,6 +26,17 @@ export default class MemoryStore extends Store {
     return Promise.reject(new Error('Not found'))
   }
 
+  _ls (p: string): Promise<Array<string>> {
+    let val
+    if (p === '/') {
+      val = this.fs
+    } else {
+      val = get(this.fs, p.replace(/^\//, '').split('/'))
+    }
+
+    return Promise.resolve(Object.keys(val))
+  }
+
   mkdirp (dirname: string): Promise<void> {
     dirname.split('/').reduce((cur, part) => {
       if (part && !cur[part]) {

@@ -32,7 +32,8 @@
     "garbage": "0.0.0",
     "ipfs-daemon": "^0.3.0-beta.4",
     "nock": "^9.0.2",
-    "nyc": "^10.0.0"
+    "nyc": "^10.0.0",
+    "rimraf": "^2.5.4"
   },
   "dependencies": {
     "concat-stream": "^1.5.2",
